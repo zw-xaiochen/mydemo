@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>mydemo</artifactId>
+    <groupId>com.cjy.cloud</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>study-module</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>study-module</name>
+  <description>学习模块</description>
+  <packaging>pom</packaging>
+  <modules>
+    <!-- 设计模式 -->
+    <module>gof-module</module>
+    <!-- 一些java组件API -->
+    <module>technology-module</module>
+  </modules>
+
+</project>

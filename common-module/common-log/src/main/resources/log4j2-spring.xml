@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--status="WARN" :Configuration后面的status
+   这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,你会看到log4j2内部各种详细输出-->
+<!--configuration还可以加入属性 monitorInterval="30" 自动检测配置文件的变更和重新配置本身-->
+<configuration status="WARN">
+    <properties>
+        <!-- 日志村路径 -->
+        <property name="LOG_HOME">/log4j2/${sys:LOG_PATH}</property>
+        <property name="msg_style">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} --[%t] %highlight{%-5level} %c{1.}:%L - %msg%xEx%n
+        </property>
+    </properties>
+    <!--appenders:定义输出内容,输出格式,输出方式,日志保存策略等,
+    常用其下三种标签[console,File,RollingFile]-->
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern= "${msg_style}"/>
+        </Console>
+
+        <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/info.log"
+                     filePattern="${LOG_HOME}/info/info-%d{yyyy-MM-dd}-%i.log">
+            <!--ThresholdFilter :日志输出过滤-->
+            <!--level="info" :日志级别,onMatch="ACCEPT" :级别在info之上则接受,
+                onMismatch="DENY" :级别在info之下则拒绝-->
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout charset="UTF-8" pattern= "${msg_style}"/>
+            <!-- Policies :日志滚动策略-->
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy :时间滚动策略,
+                每天生成一个文件 interval的粒度需要结合RollingFile标签的filePattern来控制的
+                eg: 当前这个RollingFile的filePattern的粒度是dd 所以这里配置为1就是每天生成一个文件-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!-- SizeBasedTriggeringPolicy :文件大小滚动策略 文件大小超过10M就产生新的文件-->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy max属性如不设置，则默认为最多备份7个文件,旧的文件将被删除,这里设置了20 -->
+            <!-- 注意max属性需要结合RollingFile标签的filePattern来使用,只文件名称中包含-%i才会生效 -->
+            <DefaultRolloverStrategy max="20">
+                <!--文件删除策略-->
+                <Delete basePath="${LOG_HOME}/info/" maxDepth="2">
+                    <IfFileName glob="*.log" />
+                    <!-- info日志最多保留7天 -->
+                    <!-- 注意此处的单位d 也要结合RollingFile标签的filePattern来使用 -->
+                    <IfLastModified age="7d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="RollingFileWarn" fileName="${LOG_HOME}/warn.log"
+                     filePattern="${LOG_HOME}/warn/warn-%d{yyyy-MM-dd}-%i.log">
+            <!--ThresholdFilter :日志输出过滤-->
+            <!--level="warn" :日志级别,onMatch="ACCEPT" :级别在warn之上则接受,
+                onMismatch="DENY" :级别在warn之下则拒绝-->
+            <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout charset="UTF-8" pattern= "${msg_style}"/>
+            <!-- Policies :日志滚动策略-->
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy :时间滚动策略,
+                每天生成一个文件 interval的粒度需要结合RollingFile标签的filePattern来控制的
+                eg: 当前这个RollingFile的filePattern的粒度是dd 所以这里配置为1就是每天生成一个文件-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!-- SizeBasedTriggeringPolicy :文件大小滚动策略 文件大小超过10M就产生新的文件-->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy max属性如不设置，则默认为最多备份7个文件,旧的文件将被删除,这里设置了20 -->
+            <!-- 注意max属性需要结合RollingFile标签的filePattern来使用,只文件名称中包含-%i才会生效 -->
+            <DefaultRolloverStrategy max="20">
+                <!--文件删除策略-->
+                <Delete basePath="${LOG_HOME}/warn/" maxDepth="2">
+                    <IfFileName glob="*.log" />
+                    <!-- warn日志最多保留7天 -->
+                    <!-- 注意此处的单位d 也要结合RollingFile标签的filePattern来使用 -->
+                    <IfLastModified age="7d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+
+        <RollingFile name="RollingFileError" fileName="${LOG_HOME}/error.log"
+                     filePattern="${LOG_HOME}/error/error-%d{yyyy-MM-dd}-%i.log">
+            <!--ThresholdFilter :日志输出过滤-->
+            <!--level="error" :日志级别,onMatch="ACCEPT" :级别在error之上则接受,
+                onMismatch="DENY" :级别在error之下则拒绝-->
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout charset="UTF-8" pattern= "${msg_style}" />
+            <!-- Policies :日志滚动策略-->
+            <Policies>
+                <!-- TimeBasedTriggeringPolicy :时间滚动策略,
+                每天生成一个文件 interval的粒度需要结合RollingFile标签的filePattern来控制的
+                eg: 当前这个RollingFile的filePattern的粒度是dd 所以这里配置为1就是每天生成一个文件-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!-- SizeBasedTriggeringPolicy :文件大小滚动策略 文件大小超过10M就产生新的文件-->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy max属性如不设置，则默认为最多备份7个文件,旧的文件将被删除,这里设置了20 -->
+            <!-- 注意max属性需要结合RollingFile标签的filePattern来使用,只文件名称中包含-%i才会生效 -->
+            <DefaultRolloverStrategy max="20">
+                <!--文件删除策略-->
+                <Delete basePath="${LOG_HOME}/error/" maxDepth="2">
+                    <IfFileName glob="*.log" />
+                    <!-- Error日志最多保留15天 -->
+                    <!-- 注意此处的单位d 也要结合RollingFile标签的filePattern来使用 -->
+                    <IfLastModified age="15d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--异步AsyncAppender进行配置直接引用上面的RollingFile的name-->
+        <!-- 这里暂时不开启异步日志,如果后期日志量增大,导致系统吞吐量降低,可以开启异步日志来提升性能 -->
+        <!--<Async name="Async">
+            <AppenderRef ref="RollingFileInfo"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileError"/>
+        </Async>-->
+    </appenders>
+
+
+    <loggers>
+        <!-- 日志级别为info -->
+        <root level="info">
+            <!-- 项目部署到服务器,需要将console注释,避免日志重复输出 -->
+            <!--<appender-ref ref="Console"/>-->
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+    </loggers>
+</configuration>

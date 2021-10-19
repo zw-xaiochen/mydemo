@@ -1,0 +1,4 @@
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 10 #设置启动时加载servlet
