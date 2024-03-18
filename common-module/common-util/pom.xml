@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>common-module</artifactId>
-    <groupId>com.cjy.cloud</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.cjy.mydemo</groupId>
+    <version>1.0.0</version>
   </parent>
   <artifactId>common-util</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <description>工具类</description>
 
   <dependencies>
@@ -47,6 +47,13 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.26</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-buffer</artifactId>
+      <version>4.1.51.Final</version>
     </dependency>
 
   </dependencies>

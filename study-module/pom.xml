@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>mydemo</artifactId>
-    <groupId>com.cjy.cloud</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.cjy.mydemo</groupId>
+    <version>1.0.0</version>
   </parent>
   <artifactId>study-module</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>study-module</name>
   <description>学习模块</description>
   <packaging>pom</packaging>

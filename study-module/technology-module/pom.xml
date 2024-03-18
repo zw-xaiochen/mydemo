@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>study-module</artifactId>
-    <groupId>com.cjy.cloud</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.cjy.mydemo</groupId>
+    <version>1.0.0</version>
   </parent>
   <artifactId>technology-module</artifactId>
   <description>一些JAVA类库学习demo</description>
@@ -22,9 +22,9 @@
     </dependency>
 
     <dependency>
-      <groupId>com.cjy.cloud</groupId>
+      <groupId>com.cjy.mydemo</groupId>
       <artifactId>common-util</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 
