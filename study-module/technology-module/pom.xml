@@ -9,7 +9,21 @@
   </parent>
   <artifactId>technology-module</artifactId>
   <description>一些JAVA类库学习demo</description>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.2.3</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
@@ -22,9 +36,20 @@
     </dependency>-->
 
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>com.cjy.mydemo</groupId>
       <artifactId>common-util</artifactId>
       <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+      <version>4.1.1</version>
     </dependency>
   </dependencies>
 
